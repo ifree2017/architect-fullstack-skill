@@ -99,7 +99,39 @@ public_skill/
 
 ## Quick start
 
-### Option 1: Use ready-made skills directly
+### Option 1: Install as Claude/Cursor Skill (Recommended)
+
+```bash
+# Clone or copy this repository
+git clone <repo-url> architect-fullstack-skill
+cd architect-fullstack-skill
+
+# Run installation script
+chmod +x install.sh
+./install.sh
+```
+
+Choose your installation location:
+- Claude: `~/.claude/skills/architect-fullstack-skill`
+- Cursor: `~/.cursor/skills/architect-fullstack-skill`
+
+After installation:
+1. Restart Claude/Cursor
+2. Go to Settings → Skills to load the skill
+3. Use trigger words to activate:
+
+| Trigger Word | Description |
+|--------------|-------------|
+| `@architect-fullstack` | Full architect skill |
+| `@go-backend` | Go backend focused |
+| `@api-design` | API design focused |
+| `@web-frontend` | Web frontend focused |
+| `@miniprogram` | Mini program focused |
+| `@app-client` | App client collaboration |
+| `@review` | Code review focused |
+| `@release` | Release assessment focused |
+
+### Option 2: Use ready-made skills directly
 
 If you want the fastest path, start with files in `packs_rendered/`.
 
@@ -235,7 +267,7 @@ In other words:
 
 ## Version
 
-Current version: `v1.0.0`
+Current version: `v1.0.1`
 
 See also:
 - `SKILL_MANIFEST.md`

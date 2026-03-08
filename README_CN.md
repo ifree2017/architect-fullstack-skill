@@ -60,7 +60,39 @@
 
 ## 如何开始
 
-### 直接使用
+### 方式一：安装为 Claude/Cursor Skill（推荐）
+
+```bash
+# 克隆或复制仓库
+git clone <仓库地址> architect-fullstack-skill
+cd architect-fullstack-skill
+
+# 运行安装脚本
+chmod +x install.sh
+./install.sh
+```
+
+选择安装位置：
+- Claude: `~/.claude/skills/architect-fullstack-skill`
+- Cursor: `~/.cursor/skills/architect-fullstack-skill`
+
+安装后：
+1. 重启 Claude/Cursor
+2. 在 Settings → Skills 中加载 skill
+3. 使用触发词激活：
+
+| 触发词 | 说明 |
+|--------|------|
+| `@architect-fullstack` | 完整架构师技能 |
+| `@go-backend` | Go 后端专项 |
+| `@api-design` | API 设计专项 |
+| `@web-frontend` | Web 前端专项 |
+| `@miniprogram` | 小程序专项 |
+| `@app-client` | App 协作专项 |
+| `@review` | Code Review 专项 |
+| `@release` | 发布评估专项 |
+
+### 方式二：直接使用
 如果你只是想快速上手，优先从这些文件开始：
 
 - `packs_rendered/architect_fullstack_claude_skill.md`

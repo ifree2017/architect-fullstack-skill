@@ -1,0 +1,77 @@
+name: CI
+
+on:
+  push:
+    branches: [main, master]
+  pull_request:
+    branches: [main, master]
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Check required files exist
+        run: |
+          required_files=(
+            "SKILL.md"
+            "TEST.md"
+            "install.sh"
+            "core/architect_fullstack_core.md"
+            "adapters/claude_adapter.md"
+            "adapters/cursor_adapter.md"
+          )
+          
+          for file in "${required_files[@]}"; do
+            if [ ! -f "$file" ]; then
+              echo "Missing required file: $file"
+              exit 1
+            fi
+          done
+          echo "All required files exist"
+
+      - name: Check directory structure
+        run: |
+          required_dirs=(
+            "core"
+            "adapters"
+            "rules"
+            "workflow"
+            "packs_rendered"
+          )
+          
+          for dir in "${required_dirs[@]}"; do
+            if [ ! -d "$dir" ]; then
+              echo "Missing required directory: $dir"
+              exit 1
+            fi
+          done
+          echo "All required directories exist"
+
+      - name: Validate SKILL.md has required sections
+        run: |
+          if ! grep -q "## Usage" SKILL.md; then
+            echo "SKILL.md missing Usage section"
+            exit 1
+          fi
+          if ! grep -q "## Trigger Words" SKILL.md; then
+            echo "SKILL.md missing Trigger Words section"
+            exit 1
+          fi
+          echo "SKILL.md validation passed"
+
+      - name: Validate packs_rendered not empty
+        run: |
+          count=$(ls -1 packs_rendered/*.md 2>/dev/null | wc -l)
+          if [ "$count" -lt 5 ]; then
+            echo "Expected at least 5 pack files, found $count"
+            exit 1
+          fi
+          echo "Found $count pack files"
+
+      - name: Check install.sh is executable
+        run: |
+          if [ ! -x install.sh ]; then
+            echo "Warning: install.sh is not executable"
+          fi
